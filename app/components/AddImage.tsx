@@ -20,6 +20,7 @@ export interface AddImageProps extends PressableProps {
     containerStyle?: StyleProp<ViewStyle>
     imageStyle?: ImageStyle
     viewStyle?: ViewStyle
+    choice?: boolean
 }
 
 export function AddImage(props: AddImageProps) {
@@ -31,7 +32,8 @@ export function AddImage(props: AddImageProps) {
         avatar,
         imagePick,
         imageStyle,
-        viewStyle
+        viewStyle,
+        choice = true
     } = props
 
     const [image, setImage] = useState(source);
@@ -57,13 +59,13 @@ export function AddImage(props: AddImageProps) {
         width: size,
         height: size
     }
-
     return(
-        <Pressable onPress={pickImage} style={[$containerStyle, {height: 'auto'}]}>
-            {avatar && <AutoImage source={{ uri: image ? 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60' : image }} style={$avatarImage} />}
+        <Pressable onPress={choice ? pickImage : null} style={[$containerStyle, {height: 'auto'}]}>
+            {avatar && <AutoImage 
+                            source={image ? {uri: image} : { uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60'}} style={$avatarImage} />}
             {imagePick && (
                 image ?
-                <AutoImage source={{uri: image}} style={[$imagePick, imageStyle]} /> :
+                <AutoImage source={image[0] === 'f' ? {uri: image} : image} style={[$imagePick, imageStyle]} /> :
                 <View style={[$addIcon, viewStyle]}>
                     <Icon icon="add" />
                 </View>

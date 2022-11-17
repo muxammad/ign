@@ -46,7 +46,11 @@ export const FillYourProfileScreen: FC<FillYourProfileScreenProps> = observer(fu
         <SafeAreaView style={$screenContentContainer} >
             <View style={$container}>
                 <Text size="xl" weight="bold" tx={"fillYourProfile.title"} />
-                <AddImage size={120} avatar={true} containerStyle={$avatarContainerStyle} />
+                <AddImage
+                    size={120}
+                    avatar={true}
+                    containerStyle={$avatarContainerStyle}
+                />
                 <FlatList
                     data={inputs}
                     renderItem={({item}) => _renderItem({item})}

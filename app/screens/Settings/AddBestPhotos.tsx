@@ -3,9 +3,8 @@ import { observer } from "mobx-react-lite";
 import { Dimensions, ImageStyle, SafeAreaView, TextStyle, View, ViewStyle } from "react-native";
 import { AppStackScreenProps } from "../../navigators";
 import { colors, spacing } from "../../theme";
-import { Button, Icon, Text, TextField } from "../../components";
+import { Button, Text } from "../../components";
 import { AddImage } from "../../components/AddImage";
-import { translate } from "../../i18n";
 import { Divider } from "@rneui/themed";
 import { FlatList } from "react-native-gesture-handler";
 
@@ -28,12 +27,12 @@ export const AddYourBestPhotos: FC<AddYourBestPhotosScreenProps> = observer(func
         }
     ]
     const $imageStyle: ImageStyle = {
-        width: Dimensions.get("window").width*.5-45,
-        height: Dimensions.get("window").height*.3,
+        width: Dimensions.get("window").width * .5 - 45,
+        height: Dimensions.get("window").height * .25,
     }
     const $viewStyle: ViewStyle = {
-        width: Dimensions.get("window").width*.5-45,
-        height: Dimensions.get("window").height*.3,
+        width: Dimensions.get("window").width * .5 - 45,
+        height: Dimensions.get("window").height * .25,
     }
     const _renderItem = ({item}) => (
         <AddImage 

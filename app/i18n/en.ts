@@ -1,5 +1,8 @@
 const en = {
   brandName: "SINQLY",
+  userName: {
+    name: "Isabella Ava"
+  },
   onboarding: {
     pageOneSubTIitle: "find your soul mate",
     pageTwoTitle: "Share your interests with the whole world.",
@@ -34,6 +37,20 @@ const en = {
     title: "Select Your Ideal Match",
     subTitle: "What are you hoping to fing on the"
   },
+  homePage: {
+    goodMorning: "Good Morning",
+    away: "KMS AWAY"
+  },
+  lovelyPage: {
+    match: 'Match',
+    newMatch: 'New Match',
+    yourMatch: 'Your Match',
+    seeAll: 'See All'
+  },
+  chatPage: {
+    chats: 'Chats',
+    nowActive: 'Now Active'
+  },
   common: {
     nextPage: "Next Page", 
     ok: "OK!",
@@ -42,6 +59,7 @@ const en = {
     search: "Search",
     contine: "Contine",
     logOut: "Log Out", // @demo remove-current-line
+    activeNow: "Active Now"
   },
   welcomeScreen: {
     postscript:

@@ -20,6 +20,10 @@ export interface ButtonAccessoryProps {
 }
 
 export interface ButtonProps extends PressableProps {
+  bgColor?: string 
+  radius?: number
+  size?: number
+  square?: boolean
   icon?: TextProps["icon"]
   /**
    * Text which is looked up via i18n.
@@ -89,6 +93,10 @@ export function Button(props: ButtonProps) {
     RightAccessory,
     LeftAccessory,
     icon,
+    square,
+    size,
+    radius,
+    bgColor,
     ...rest
   } = props
 
@@ -98,6 +106,12 @@ export function Button(props: ButtonProps) {
       $viewPresets[preset],
       $viewStyleOverride,
       !!pressed && [$pressedViewPresets[preset], $pressedViewStyleOverride],
+      square && {
+        width: size,
+        height: size,
+        borderRadius: radius,
+        backgroundColor: bgColor,
+      },
     ]
   }
   function $textStyle({ pressed }) {

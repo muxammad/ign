@@ -1,6 +1,6 @@
 import React, {FC, useState} from "react"
 import { observer } from "mobx-react-lite";
-import { SafeAreaView, TextStyle, View, ViewStyle } from "react-native";
+import { Dimensions, FlatList, SafeAreaView, TextStyle, View, ViewStyle } from "react-native";
 import { AppStackScreenProps } from "../../navigators";
 import { colors, spacing } from "../../theme";
 import { Button, Icon, iconRegistry, Text, Toggle } from "../../components";
@@ -8,32 +8,45 @@ import { Divider } from "@rneui/themed";
 
 interface SelectYourIdealScreenProps extends AppStackScreenProps<"SelectYourIdeal">{}
 
-export const SelectYourIdeal: FC<SelectYourIdealScreenProps> = observer(function SelectYourIdeal() {
+export const SelectYourIdeal: FC<SelectYourIdealScreenProps> = observer(function SelectYourIdeal({navigation}) {
 
-    const inputs = [
+    const buttons = [
         {
-            uri: 'https://images.unsplash.com/photo-1667847988796-74c9067756e4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60'
+            icon: 'heart'
         },
         {
-            uri: 'https://images.unsplash.com/photo-1667988152364-52ab908cd3bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80'
+            icon: 'bag'
         },
         {
-            uri: null
+            icon: 'people'
         },
         {
-            uri: null
+            icon: 'presentionChart'
         }
     ]
+    const _renderItem = ({item}) => (
+        <View style={$listItem} >
+            <Toggle
+                inputOuterStyle={$inputOuterStyle}
+                variant={'checkboxWithText'}
+                icon={item.icon}
+            />
+        </View>
+
+    )
     return(
         <SafeAreaView style={$screenContentContainer} >
             <View style={$container}>
                 <Text size="xl" weight="bold" tx={"selectYourIdeal.title"} />
                 <Text style={$interestsSubtitle} size="md" weight="normal" tx={"selectYourIdeal.subTitle"} />
-                <Toggle
-                    variant={'checkboxWithText'}
+                <FlatList
+                    data={buttons}
+                    keyExtractor={(item) => item.icon}
+                    renderItem={({item}) => _renderItem({item})}
+                    numColumns={2}
                 />
                 <Divider width={1} color={colors.transparent} />
-                <Button preset="default" tx={"common.nextPage"} />
+                <Button preset="default" tx={"common.nextPage"} onPress={() => navigation.navigate("HomePage")} />
             </View>
         </SafeAreaView>
     )
@@ -56,4 +69,12 @@ const $textField: ViewStyle = {
 }
 const $interestsSubtitle: TextStyle = {
     marginVertical: spacing.medium
+}
+const $listItem: ViewStyle = {
+    width: Dimensions.get("screen").width / 2 - 32,
+    marginVertical: 5,
+    marginHorizontal: 5,
+}
+const $inputOuterStyle: ViewStyle = {
+    height: Dimensions.get("screen").height * .25
 }

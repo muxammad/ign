@@ -139,6 +139,7 @@ interface ToggleInputProps {
  * - [Documentation and Examples](https://github.com/infinitered/ignite/blob/master/docs/Components-Toggle.md)
  */
 export function Toggle(props: ToggleProps) {
+  const [change, setChange] = useState(false)
   const {
     variant = "checkbox",
     editable = true,
@@ -173,7 +174,6 @@ export function Toggle(props: ToggleProps) {
     status === "error" && { color: colors.error },
     HelperTextProps?.style,
   ]
-  const [change, setChange] = useState(false)
   function handlePress(e: GestureResponderEvent) {
     setChange(!change)
     if (disabled) return
@@ -241,24 +241,28 @@ function CheckboxWithText(props: ToggleInputProps) {
   const offBackgroundColor = [
     disabled && colors.palette.neutral100,
     status === "error" && colors.errorBackground,
-    colors.palette.lightSecondary100,
+    colors.palette.neutral100,
   ].filter(Boolean)[0]
 
   const outerBorderColor = [
     disabled && colors.palette.neutral100,
     status === "error" && colors.error,
-    !on && colors.palette.neutral100,
-    colors.palette.lightSecondary200,
+    !on && colors.palette.neutral500,
+    colors.palette.primary600,
   ].filter(Boolean)[0]
   return (
     <View
       style={[
         $inputOuterVariants.checkboxWithText,
-        { backgroundColor: offBackgroundColor, borderColor: outerBorderColor },
+        { backgroundColor: offBackgroundColor,
+          borderColor: outerBorderColor },
         $outerStyleOverride, 
       ]}
     >
-      <Icon icon={icon} />
+      {icon ? <Icon
+                icon={icon}
+                color={outerBorderColor} />
+            : null}
       {text ? <Text text={text} /> : null}
     </View>
   )
@@ -271,7 +275,6 @@ function Checkbox(props: ToggleInputProps) {
     disabled,
     outerStyle: $outerStyleOverride,
     innerStyle: $innerStyleOverride,
-    detailStyle: $detailStyleOverride,
   } = props;
 
 
@@ -318,7 +321,6 @@ function Checkbox(props: ToggleInputProps) {
       >
         <Image
           source={iconRegistry.check}
-        // style={[$checkboxDetail, { tintColor: iconTintColor }, $detailStyleOverride]}
         />
       </Animated.View>
     </View>
@@ -405,7 +407,7 @@ function Switch(props: ToggleInputProps) {
   }, [$detailStyleOverride?.width])
 
   const offBackgroundColor = [
-    disabled && colors.palette.neutral400,
+    disabled && colors.palette.neutral4100,
     status === "error" && colors.errorBackground,
     colors.palette.neutral300,
   ].filter(Boolean)[0]

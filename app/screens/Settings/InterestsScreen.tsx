@@ -42,7 +42,6 @@ export const InterestsScreen: FC<InterestsScreenProps> = observer(function Inter
                 <Toggle 
                     text={item.interes}
                     variant={'checkboxWithText'}
-                    icon={'add'}
                 />
             </View>
         )

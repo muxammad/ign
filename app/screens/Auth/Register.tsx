@@ -81,7 +81,7 @@ export const RegisterScreen: FC<RegisterScreenProps> = observer(function Registe
                         translate("registerScreen.enterYourPhoneNum")
                         }
                     LeftAccessory={
-                        () => <Icon icon="profile" />
+                        () => <Icon icon="call" />
                         }
                     containerStyle={$textInput}
                     />
